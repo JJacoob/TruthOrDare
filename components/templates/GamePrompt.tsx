@@ -72,7 +72,7 @@ export const GamePrompt = () => {
                 {displayName}
             </h2>
 
-            <main className="flex-1 flex flex-col justify-center">
+            <main className="flex flex-1 items-center justify-center pb-36">
                 <div className="w-full max-w-2xl mx-auto text-center min-h-40">
                     {isInitialLoading ? (
                         <div className="flex flex-col gap-3 items-center">
@@ -88,40 +88,42 @@ export const GamePrompt = () => {
                 </div>
             </main>
 
-            <div className="flex flex-col gap-4 w-full max-w-md mx-auto max-[678px]:max-w-none">
-                {mode === Mode.TOD && question && (
-                    <button
-                        onClick={refetchQuestion}
-                        disabled={isFetching}
-                        className="btn btn-primary w-full"
-                    >
-                        {question.type.toLowerCase() === "truth"
-                            ? t("wantDare")
-                            : t("wantTruth")}
-                    </button>
-                )}
-
-                <div className="flex gap-2">
-                    <button
-                        onClick={refetchQuestion}
-                        disabled={isFetching}
-                        className="flex-1 btn btn-soft btn-primary"
-                    >
-                        <ArrowPathIcon className="size-4" />
-                        {isFetching ? t("loading") : t("reroll")}
-                    </button>
-
-                    {players.length > 1 && (
+            <footer className="sticky bottom-0 z-20 bg-base-100 pb-safe">
+                <div className="flex flex-col gap-4 w-full max-w-md mx-auto max-[678px]:max-w-none">
+                    {mode === Mode.TOD && question && (
                         <button
-                            onClick={nextPlayer}
-                            className="flex-1 btn btn-soft btn-primary"
+                            onClick={refetchQuestion}
+                            disabled={isFetching}
+                            className="btn btn-primary w-full"
                         >
-                            <UsersIcon className="size-4" />
-                            {t("nextPlayer")}
+                            {question.type.toLowerCase() === "truth"
+                                ? t("wantDare")
+                                : t("wantTruth")}
                         </button>
                     )}
+
+                    <div className="flex gap-2">
+                        <button
+                            onClick={refetchQuestion}
+                            disabled={isFetching}
+                            className="flex-1 btn btn-soft btn-primary"
+                        >
+                            <ArrowPathIcon className="size-4" />
+                            {isFetching ? t("loading") : t("reroll")}
+                        </button>
+
+                        {players.length > 1 && (
+                            <button
+                                onClick={nextPlayer}
+                                className="flex-1 btn btn-soft btn-primary"
+                            >
+                                <UsersIcon className="size-4" />
+                                {t("nextPlayer")}
+                            </button>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </footer>
         </>
     );
 };
