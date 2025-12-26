@@ -32,11 +32,11 @@ export default async function LocaleLayout({
     params,
 }: {
     children: ReactNode;
-    params: Promise<{ locale: Locale }>;
+    params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
 
-    if (!locales.includes(locale)) notFound();
+    if (!locales.includes(locale as Locale)) notFound();
 
     const messages = (await import(`@/messages/${locale}.json`)).default;
 
