@@ -1,4 +1,4 @@
-# Truth or Dare API 🎲
+# Truth or Dare APP 🎲
 
 A modern, scalable **Truth or Dare App** built with **Next.js App Router**, designed for party games, mobile web apps, and web experiences.  
 This project is built as a **portfolio project**, highlighting production-ready patterns, strong typing, and modern React architecture.
