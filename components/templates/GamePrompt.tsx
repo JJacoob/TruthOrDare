@@ -72,7 +72,7 @@ export const GamePrompt = () => {
                 {displayName}
             </h2>
 
-            <main className="flex flex-1 items-center justify-center pb-36">
+            <main className="flex flex-1 items-center justify-center max-[678px]:pb-36">
                 <div className="w-full max-w-2xl mx-auto text-center min-h-40">
                     {isInitialLoading ? (
                         <div className="flex flex-col gap-3 items-center">
@@ -88,7 +88,7 @@ export const GamePrompt = () => {
                 </div>
             </main>
 
-            <footer className="sticky bottom-0 z-20 bg-base-100 pb-safe">
+            <footer className="sticky bottom-0 z-20 bg-base-100 pb-5">
                 <div className="flex flex-col gap-4 w-full max-w-md mx-auto max-[678px]:max-w-none">
                     {mode === Mode.TOD && question && (
                         <button
