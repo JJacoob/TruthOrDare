@@ -11,6 +11,7 @@ import { debounce } from "@/utils";
 import { DEBOUNCE_MS } from "@/constants";
 import { useLocale, useTranslations } from "next-intl";
 import { fetchTruthOrDare } from "@/app/actions";
+import { questionQueryKey } from "@/lib/queryKeys";
 
 export const GamePrompt = () => {
     const t = useTranslations();
@@ -34,11 +35,11 @@ export const GamePrompt = () => {
 
     const {
         data: question,
-        isLoading,
         isFetching,
+        isRefetching,
         refetch,
     } = useQuery<Question>({
-        queryKey: ["question", mode, rating, currentPlayer],
+        queryKey: questionQueryKey(mode, rating),
         queryFn: () => fetchTruthOrDare(mode, rating),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
@@ -58,7 +59,7 @@ export const GamePrompt = () => {
         [randomPlayer]
     );
 
-    const isInitialLoading = isLoading && !question;
+    const showSkeleton = isRefetching || isFetching;
     const displayName = currentPlayer ? t('turn', { player: currentPlayer }) : "";
 
     const displayQuestion =
@@ -74,7 +75,7 @@ export const GamePrompt = () => {
 
             <main className="flex flex-1 items-center justify-center max-[678px]:pb-36">
                 <div className="w-full max-w-2xl mx-auto text-center min-h-40">
-                    {isInitialLoading ? (
+                    {showSkeleton ? (
                         <div className="flex flex-col gap-3 items-center">
                             <Skeleton className="w-[80%] h-8" />
                             <Skeleton className="w-full h-8" />
